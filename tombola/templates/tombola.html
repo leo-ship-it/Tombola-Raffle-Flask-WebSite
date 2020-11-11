@@ -1,0 +1,74 @@
+
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+<link rel="stylesheet" href="static/tombola.css">
+
+{% extends "layout.html" %}
+
+
+{% block content %}
+<div class="center-div" style="padding-left: 5%;">
+  <b>Code couleur :</b><br>
+ <input type="hidden" name="tickets" value="disponible" disabled>
+ <label for="dispo" class="butn butn-available custom"></label> <label>Ticket Disponible</label><br>
+ <input type="hidden" name="tickets" value="disponible" disabled>
+ <label for="vendu" class="butn butn-unavailable custom"></label> <label>Ticket Vendu</label><br>
+ <input type="hidden" name="tickets" value="disponible" disabled>
+ <label for="dispo" class="butn butn-booked custom"></label> <label>Ticket en cours d'Achat</label>
+</div>
+<div class="dropdown" style="padding-left: 5%;">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Trier par :  </button>
+    <div class="dropdown-menu">
+      <form method="POST" action="">
+        {{ form_option.csrf_token }}
+        <div class="dropdown-item">
+        {{ form_option.option1(class="btn",style="margin-top: 1%;") }}<br>
+        </div>
+        <div class="dropdown-item">
+        {{ form_option.option2(class="btn",style="margin-top: 1%;") }}
+        </div>
+      </form>
+    </div>
+</div>
+
+{% if not current_user.confirmed %}
+  <div style="padding-left: 40%">
+    <b>Veuillez accepter la charte <a href='/charte'>ici</a>.</b>
+  </div>
+{% endif %}
+<div style="padding-left: 30%">
+    <b>Vente des tickets finie. Tirage au sort le 30 octobre. Vous pouvez consulter vos billets <a href='/dashboard'>ici</a>.</b>
+  </div>
+
+  <form method="POST" style="padding-top: 10%; position: relative;">
+  {{ form.hidden_tag() }}
+  <div class="tabellone">
+    <div class="content">
+      <div class="tabella">
+       <div class="tabellaInner">
+        {% for k in data %}
+         <div>
+          {% if k.ticket_owner == None and k.expiry < date %}
+            <input type="checkbox" name="tickets" value={{k.id}} id="{{k.id}}">
+            <label for="{{ k.id }}" class="butn butn-available custom">{{ k.id }}</label>
+          {% elif k.ticket_owner == None and k.expiry > date %}
+            <input type="checkbox" name="tickets" value={{k.id}} id="{{k.id}}" disabled>
+            <label for="{{ k.id }}" class="butn butn-booked custom">{{ k.id }}</label>
+          {% elif k.ticket_owner != None %}
+            <input type="checkbox" name="tickets" value={{k.id}} id="{{k.id}}" disabled>
+            <label for="{{ k.id }}" class="butn butn-unavailable custom">{{ k.id }}</label>
+          {% endif %}
+        </div>
+       {% endfor %}
+     </div>
+    </div>
+   </div>
+  </div>
+</form>
+ 
+  
+ <footer class="text-center">
+    
+  </footer>
+{% endblock %}

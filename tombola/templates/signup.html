@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <div class="mx-auto" style="width: 200px;">
+  <form action="#" method="POST">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+      {{ form.username.label(class="form-control-label") }}
+      {% if form.username.errors %}
+        {{ form.username(class="form-control is-invalid")}}
+        <div class="invalid-feedback">
+          {% for error in form.username.errors %}
+            <span> {{ error }} </span>
+           {% endfor %} 
+        </div>
+      {% else %}
+       {{ form.username(class="form-control") }}
+      {% endif %}
+    </div>
+    <div class="form-group">
+      {{ form.phone.label(class="form-control-label") }}
+      {% if form.phone.errors %}
+        {{ form.phone(class="form-control is-invalid")}}
+        <div class="invalid-feedback">
+          {% for error in form.phone.errors %}
+            <span> {{ error }} </span>
+           {% endfor %} 
+        </div>
+      {% else %}
+       {{ form.phone(class="form-control") }}
+      {% endif %}
+    </div>
+    <div class="form-group">
+      {{ form.email.label(class="form-control-label") }}
+      {% if form.email.errors %}
+        {{ form.email(class="form-control is-invalid", value="@phelma.grenoble-inp.fr") }}
+        <div class="invalid-feedback">
+          {% for error in form.email.errors %}
+            <span> {{ error }} </span>
+          {% endfor %}
+        </div>
+      {% else %}
+        {{ form.email(class="form-control", value="@phelma.grenoble-inp.fr")}}
+      {% endif %}
+    </div>
+    <div class="form-group">
+      {{ form.password.label(class="form-control-label") }}
+      {% if form.password.errors %}
+        {{ form.password(class="form-control is-invalid") }}
+        <div class="invalid-feedback">
+          {% for error in form.password.errors %}
+            <span> {{ error }} </span>
+          {% endfor %}
+        </div>
+      {% else %}
+        {{ form.password(class="form-control")}}
+      {% endif %}
+    </div>
+    <div class="form-group">
+      {{ form.confirm_password.label(class="form-control-label") }}
+      {% if form.confirm_password.errors %}
+        {{ form.confirm_password(class="form-control is-invalid") }}
+        <div class="invalid-feedback">
+          {% for error in form.confirm_password.errors %}
+            <span> {{ error }} </span>
+          {% endfor %}
+        </div>
+      {% else %}
+        {{ form.confirm_password(class="form-control")}}
+      {% endif %}
+    </div>
+    <div class="form-group">
+    <small><a href=" {{ url_for('login') }}"}}>Se connecter</a></small>
+    </div>
+    <div class="form-group">
+      {{ form.submit(class="btn btn-primary") }}
+    </div>
+  </div>
+{% endblock content  %}

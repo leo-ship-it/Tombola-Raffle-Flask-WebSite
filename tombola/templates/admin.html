@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div>
+	<div style="margin-left: auto; margin-right: auto; width: 20em; color:#ed1b24">
+		<h3>{{ nb_ticket_vendu }}/3000 tickets vendu</h3><br>
+		<h3>{{ nb_participants }} participants</h3>
+	</div>
+	<h6>Nombre de tickets a ajouter</h6>
+	<form method="post" action="#">
+		<div class="form-group">
+			<input type="text" name="Nombre" class="btn btn-primary">
+			<input type="submit" name="Validate" value="Validate" class="btn btn-primary">
+			<input type="submit" name="Clear" value="Clear" class="btn btn-danger">
+			
+		</div>
+		<div class="form-group">
+			<h6>Changer un mot de passe</h6>
+			<input type="text" name="Mail" class="btn btn-primary" value="Mail">
+			<input type="text" name="New_MDP" class="btn btn-primary" value="New_MDP">
+			<input type="submit" name="Change" class="btn btn-primary" name="Change" value="Change">
+		</div>
+		<div class="form-group">
+			<h6>Ajouter ticket</h6>
+			<input type="text" name="Mail1" class="btn btn-primary" value="Mail1">
+			<input type="text" name="Num_ticket" class="btn btn-primary" value="Num_ticket">
+			<input type="submit" name="Change1" class="btn btn-primary" name="Change1" value="Change1">
+		</div>
+	</form>
+</div>
+<div>
+	{% for element in data %}
+		<div>
+			<p>{{ element.username }} {{ element.email }} a {{ element.tickets}} </p>
+		</div>
+	{% endfor %}
+</div>
+
+{% endblock content %}

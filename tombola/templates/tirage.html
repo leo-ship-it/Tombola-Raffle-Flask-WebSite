@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div>
+	<div style="margin-left: auto; margin-right: auto; width: 20em; color:#ed1b24">
+		<h4 style="text-align: center;">Merci à toutes et tous pour votre participation !</h4>
+	</div>
+</div>
+
+{% for ele in data2 %}
+	{% if ele.username != "leo" %}
+		<div style="text-align: center; margin-left: auto;">
+			<b>lot : {{ ele.lot }} | gagnant : {{ ele.username }}</b>
+		</div>
+	{% endif %}
+{% endfor %}
+
+{% endblock content %}

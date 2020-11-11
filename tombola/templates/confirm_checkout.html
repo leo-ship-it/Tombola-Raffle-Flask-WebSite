@@ -1,0 +1,74 @@
+{% extends 'layout.html' %}
+
+
+{% block import %}
+<script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+		<!-- IMPORT SDK LYDIA -->
+<script type="text/javascript" src="static/LYDIASDK.js"></script>
+
+<link rel="stylesheet" href="static/tombola.css">
+{% endblock import %}
+
+{% block content %}
+<h5 style="padding-left: 22%;">Mon panier :</h5>
+{% if taille != 0 %}
+<div class="tabellone" style="margin-top: 7%;">
+    <div class="content">
+      <div class="tabella">
+       <div class="tabellaInner">
+				{% for k in data %}
+					<div>
+						<input type="checkbox" name="tickets" value={{k}} id="{{k}}"disabled>
+				        <label for="{{k}}" class="butn butn-available custom">{{ k }}</label>
+			    	</div>
+				{% endfor %}
+	
+		</div>
+		
+	</div>
+</div>	
+</div>
+{% else %}
+		{% if current_user.confirmed %}
+        <div  style="padding-left: 40%">
+			<p>Votre panier est vide.</p>
+		</div>
+        {% else %}
+        <div style="padding-left: 40%">
+          <b>Veuillez accepter la charte <a href='/charte'>ici</a>.</b>
+        </div>
+        {% endif %}
+
+{% endif %}
+	<!-- CONTAINER DU FORMULAIRE DE PAIEMENT LYDIA -->
+		<input type="hidden" id="foo" name="zyx" value="{{ taille }}" />
+		<input type="hidden" id="ref" name="zyx" value="{{ ref }}" />
+		<input type="hidden" id="name"value="{{ who.username }}" />
+		<input type="hidden" id="phone"value="{{ who.phone }}" />
+		<input id="paymentButton" type="submit" value="Payer {{ (taille)*2 }} €" class="btn btn-success envoyer">
+		<form action="/clear_cart" method="get">
+    		<input type="submit" value="Clear Cart" name="Submit" id="frm1_submit" class="btn btn-danger clear-cart" />
+		</form>
+		
+
+		<!-- CREATION DU FORMULAIRE DE PAIMENT LYDIA -->
+		<script type="text/javascript">
+			$(document).ready(function() {
+
+				$('#paymentButton').payWithLYDIA({
+					amount: $('input#foo').val()*2,
+					payer_info: $('input#name').val(),
+					vendor_token: '55ec3c1cb445b073038296',
+					recipient: $('input#phone').val(),
+					browser_success_url : "https://bds-phelma-tombola.fr/dashboard",
+					browser_cancel_url 	: "https://bds-phelma-tombola.fr/clear_cart",
+					end_mobile_url : "https://bds-phelma-tombola.fr/dashboard",
+					confirm_url : "https://bds-phelma-tombola.fr/lydia",
+					order_ref :  $('input#ref').val()
+				});
+
+			});
+		</script>
+</div>
+
+{% endblock content %}

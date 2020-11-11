@@ -1,0 +1,56 @@
+<link rel="stylesheet" href="static/tombola.css">
+
+{% extends "layout.html" %}
+
+{% block content %}
+<div style="padding-left: 11%">
+  <span><b>Nom d'utilisateur : </b>{{ current_user.username }}</span><br>
+  <span><b>E-mail : </b>{{ current_user.email }}</span><br>
+  <span><b>Numéro de téléphone : </b>{{ current_user.phone }}</span><br>
+  <span><b>Charte acceptée : </b>{{ current_user.confirmed }}</span>
+</div>
+<h5 style="padding-left: 22%; padding-top: 15px;">Mes tickets</h5>
+  {% if taille != 0 %}
+  <div class="tabellone" style="margin-top: 7%;">
+    <div class="content">
+      <div class="tabella">
+       <div class="tabellaInner">
+          {% for k in data.tickets %}
+         <div>
+          <input type="checkbox" name="tickets" value={{k}} id="{{k}}" disabled>
+          <label for="{{k}}" class="butn butn-available custom">{{ k }}</label>
+        </div>
+          {% endfor %}
+      </div>
+    </div>
+  {% else %}
+        {% if current_user.confirmed %}
+        <div style="padding-left: 40%">
+          <p>Vous n'avez pas encore de tickets de tombola ...</p>
+        </div>
+        {% else %}
+        <div style="padding-left: 40%">
+          <b>Veuillez accepter la charte <a href='/charte'>ici</a>.</b>
+        </div>
+        {% endif %}
+  {% endif %} 
+
+   </div>
+</div>
+
+<h5 style="padding-left: 22%; padding-top: 15px;">Mes Lots</h5>
+
+{% if taille2 != 0 %}
+          {% for k in data.cart %}
+         <div style="padding-left: 40%; margin-top: 1em;">
+          <b> {{ k }} </b>
+        </div>
+          {% endfor %}
+  {% else %}    
+        <div style="padding-left: 40%">
+          <p>Vous n'avez pas gagné de lot ...</p>
+        </div>
+  {% endif %} 
+
+
+{% endblock content %}

@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
+<div class="center-div">
+	<div class="center-div" style="padding-left: 8%;">
+		<h4>CHARTE TOMBOLA BUREAU DES SPORTS DE PHELMA</h4>
+	</div>
+
+	<div class="center-div">
+		<b>Les lots :</b>
+		<ul>
+			<li>Une console de jeux Nitendo Switch</li>
+			<li>Des forfaits paintball d’une valeur de 78 euros</li>
+			<li>Des places Jump Park</li>
+			<li>Des coffrets découverte Cave des vignerons landais</li>
+			<li>Un jeu PS4</li>
+			<li>Des mois offerts a la salle de sport Fifty Nine</li>
+			<li>Des Goodies</li>
+		</ul>
+	</div>
+
+	<div class="center-div">
+		<b>Les Dates clés :</b>
+		<p>La vente des tickets aura lieu à partir du 5 octobre jusqu’au 25 octobre.<br>
+		Le tirage se fera le 30 octobre, à la fin des vacances de la Toussaint, et les gagnants pourront alors réclamer leurs lots jusqu’au 27 novembre.<br>
+		Pour récupérer votre lot, il faudra envoyer un message au compte BDS PHELMA pour fixer une date et un lieu de rendez-vous.</p>
+	</div>
+
+	<div class="center-div">
+		<b>Pour participer :</b>
+		<p>Accédez directement à la cagnotte Lydia en ligne sur le site : <a href="https://bds-phelma-tombola.fr/">Tombola BDS Phelma</a> <br>
+		Voir le tutoriel : <br>
+		Le justificatif de paiement Lydia fera office de ticket.<br>
+		Attention, vous ne pouvez acheter qu’un nombre limité de tickets (10 max.).</p>
+	</div>
+
+	<div class="center-div">
+		<b>Règlements :</b>
+		<ul>
+			<li>Un ticket de tombola coûte 2 euros.</li>
+			<li>Ne peuvent participer à la tombola que les étudiants de PHELMA, ainsi que le personnel encadrant et administratif.</li>
+			<li>Les membres du BDS de PHELMA ne sont pas autorisés à participer.</li>
+			<li>Un participant ne peut pas acheter plus de 10 tickets.</li>
+			<li>Le tirage des lots sera réalisé par un membre du BDS, qui n’aura donc pas participé au loto.</li>
+			<li>Pensez a mettre un mot de passe unique sur chaque site.</li>
+		</ul>
+	</div>
+
+	<div class="center-div">
+		<b>Procédure de tirage au sort :</b>
+		<p>Les tickets de tombola vendus seront ordonnés par ordre croissant. On associera à chaque ticket son numéro de place dans la liste des tickets vendus.
+Ce numéro de place servira donc pour le tirage, afin de simplifier la procédure de tirage. Les lots seront également classés au préalable. <br>
+Un générateur de nombre aléatoire (0 au nombre de tickets vendus) attribuera alors à chaque lot le gagnant. <br>
+La liste des gagnants sera envoyée par mail et publiée dans un post Facebook.<br>
+Dans l’éventualité que le site internet soit hors de service, on utilisera l’ordre de paiement Lydia pour associer à chaque participant son numéro de ticket.</p>
+	</div>
+
+	<div class="center-div">
+	<p style="font-style: italic;">Les profits récoltés lors de ce loto serviront à financer le week-end ski PHELMA, ou d’autres événements sportifs organisés par le BDS.
+	</p>
+	</div>
+
+	<div class="center-div" style="padding-left: 15%;">
+		<form action='#' method='POST'>
+			<input type="checkbox" id="charte" name="charte">
+			<label for="charte">J'accepte la charte</label> 
+			<input type="submit" value="Envoyer" class="btn btn-success">
+		</form>
+	</div>
+</div>
+
+{% endblock content%}
